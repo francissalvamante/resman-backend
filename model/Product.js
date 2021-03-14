@@ -13,8 +13,8 @@ var ProductSchema = new Schema({
 
 ProductSchema.plugin(autoIncrement.plugin, { model: 'Product', field: 'sequenceNumber' })
 
-ProductSchema.index({ _id: -1 });
 ProductSchema.index({ sequenceNumber: -1 });
+ProductSchema.index({ name: -1 });
 
 var Product = mongoose.model("Product", ProductSchema);
 
