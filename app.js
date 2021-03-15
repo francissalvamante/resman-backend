@@ -15,12 +15,12 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-app.get("/", function(req, res) {
-	res.send("Hello from demo app!");
-});
+// app.get("/", function(req, res) {
+// 	res.send("Hello from demo app!");
+// });
 
-// app.post("/product", products.postProducts);
-// app.get('/product', products.getProducts);
-app.get('/prize', prizes.getPrizes);
+app.get('/prizes', prizes.getPrizes);
+app.get('/prize', prizes.getPrize);
+app.post('/prize', prizes.postPrize);
 
 app.listen(PORT, function() { console.log("Listening on port", PORT + "."); });
