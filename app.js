@@ -3,9 +3,12 @@ var mongoose = require('mongoose');
 var prizes = require('./routes/prizes');
 var cors = require('cors');
 
-mongoose.connect("mongodb://localhost:27017/demo", { useNewUrlParser: true });
+const dotenv = require('dotenv');
+dotenv.config();
 
-var PORT = 3000;
+mongoose.connect(process.env.MONGO_URI_STRING, { useNewUrlParser: true });
+
+var PORT = process.env.PORT || 3000;
 
 var app = express();
 
