@@ -7,7 +7,7 @@ autoIncrement.initialize(mongoose.connection);
 var PrizeSchema = new Schema({
     name: { type: String, required: true },
     description: { type: String, required: true },
-    image_url: { type: String, required: true },
+    imageUrl: { type: String, required: true },
     quantity: { type: Number, required: true },
     sequenceNumber: { type: Number, index: true },
     createdAt: { type: Date },
