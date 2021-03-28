@@ -1,6 +1,4 @@
-// var Product = require('../model/Product');
 var Prizes = require('../model/Prize');
-var ObjectId = require('mongodb').ObjectID;
 
 exports.getPrizes = function(req, res) {
 	Prizes.find({})
@@ -8,7 +6,7 @@ exports.getPrizes = function(req, res) {
 		res.json(data);
 	})
 	.catch(function(err) {
-		res.json(err);
+		res.status(500).send({ data: false, message: "An unknown error has occured" });
 	})
 }
 
@@ -19,13 +17,13 @@ exports.getPrize = function(req, res) {
 		res.json(data);
 	})
 	.catch(function(err) {
-		res.json(err);
+		res.status(500).send({ data: false, message: "An unknown error has occured" });
 	})
 }
 
 exports.postPrize = function(req, res) {
 	Prizes.findOneAndUpdate({ _id: req.body._id, quantity: { $gt: 0 } }, { "$inc": { quantity: -1 } }, { new: true }, function(err, doc) {
-		if(err) return new Error();
+		if(err) res.status(500).send({ data: false, message: "An unknown error has occured" });
 
 		if(!doc) {
 			res.send({ updated: false, message: "Out of stock" });
