@@ -2,6 +2,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var prizes = require('./routes/prizes');
 var cors = require('cors');
+var auth = require('./routes/auth');
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -18,10 +19,7 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-// app.get("/", function(req, res) {
-// 	res.send("Hello from demo app!");
-// });
-
+auth(app);
 app.get('/prizes', prizes.getPrizes);
 app.get('/prize', prizes.getPrize);
 app.post('/prize', prizes.postPrize);
